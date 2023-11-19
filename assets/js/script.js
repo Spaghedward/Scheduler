@@ -1,9 +1,6 @@
 var currentDay = dayjs().format('dddd, MMMM D');
 $('#currentDay').text(currentDay);
 
-// Wrap all code that interacts with the DOM in a call to jQuery to ensure that
-// the code isn't run until the browser has finished rendering all the elements
-// in the html.
 $('.saveBtn').on('click', storeInput)
 
 function storeInput() {
@@ -11,17 +8,24 @@ function storeInput() {
     var calendarTime = $(this).parent().attr('id');
     var currentTime = dayjs().hour();
     console.log(currentTime);
+    console.log(calendarTime);
     localStorage.setItem('userInput', userInput);
     localStorage.setItem('calendarTime', calendarTime);
 
     if (calendarTime < currentTime) {
-        $(this).classlist.add('past');
+        $(this).parent().removeClass('present future').addClass('past');
     } else if (calendarTime === currentTime) {
-        $(this).classlist.add('present');
+        $(this).parent().removeClass('past future').addClass('present');
     } else {
-        $(this).classlist.add('future')
+        $(this).parent().removeClass('past present').addClass('future');
     }
 }
+
+$('#9 .description').val(localStorage.getItem('userInput'));
+$('#10 .description').val(localStorage.getItem('userInput'));
+storeInput()
+
+
     // TODO: Add a listener for click events on the save button. This code should
     // use the id in the containing time-block as a key to save the user input in
     // local storage. HINT: What does `this` reference in the click listener
