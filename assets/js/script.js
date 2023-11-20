@@ -7,14 +7,19 @@ function storeInput() {
     var userInput = $(this).siblings('.description').val();
     var calendarTime = $(this).parent().attr('id');
     var currentTime = dayjs().hour();
+    var dataEntered = {
+        "userInput": userInput,
+        "calendarTime": calendarTime
+    }
     console.log(currentTime);
     console.log(calendarTime);
-    localStorage.setItem('userInput', userInput);
-    localStorage.setItem('calendarTime', calendarTime);
+    localStorage.setItem('dataKey', JSON.stringify(dataEntered));
+    // localStorage.setItem(userInput, calendarTime);
+    // // localStorage.setItem('calendarTime', calendarTime);
 
     if (calendarTime < currentTime) {
         $(this).parent().removeClass('present future').addClass('past');
-    } else if (calendarTime === currentTime) {
+    } else if (calendarTime == currentTime) {
         $(this).parent().removeClass('past future').addClass('present');
     } else {
         $(this).parent().removeClass('past present').addClass('future');
@@ -23,7 +28,15 @@ function storeInput() {
 
 $('#9 .description').val(localStorage.getItem('userInput'));
 $('#10 .description').val(localStorage.getItem('userInput'));
-storeInput()
+$('#11 .description').val(localStorage.getItem('userInput'));
+$('#12 .description').val(localStorage.getItem('userInput'));
+$('#13 .description').val(localStorage.getItem('userInput'));
+$('#14 .description').val(localStorage.getItem('userInput'));
+$('#15 .description').val(localStorage.getItem('userInput'));
+$('#16 .description').val(localStorage.getItem('userInput'));
+$('#17 .description').val(localStorage.getItem('userInput'));
+
+// storeInput()
 
 
     // TODO: Add a listener for click events on the save button. This code should
