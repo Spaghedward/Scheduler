@@ -7,15 +7,18 @@ function storeInput() {
     var userInput = $(this).siblings('.description').val();
     var calendarTime = $(this).parent().attr('id');
     var currentTime = dayjs().hour();
-    var dataEntered = {
-        "userInput": userInput,
-        "calendarTime": calendarTime
-    }
     console.log(currentTime);
     console.log(calendarTime);
-    localStorage.setItem('dataKey', JSON.stringify(dataEntered));
-    // localStorage.setItem(userInput, calendarTime);
-    // // localStorage.setItem('calendarTime', calendarTime);
+    var existingData = JSON.parse(localStorage.getItem('dataEntered'))??[];
+    var newData = existingData.concat(
+        [{userInput,
+          calendarTime, 
+        }
+        ]
+    );
+    localStorage.setItem('dataEntered', JSON.stringify(newData));
+
+   
 
     if (calendarTime < currentTime) {
         $(this).parent().removeClass('present future').addClass('past');
@@ -24,17 +27,18 @@ function storeInput() {
     } else {
         $(this).parent().removeClass('past present').addClass('future');
     }
+
 }
 
-$('#9 .description').val(localStorage.getItem('userInput'));
-$('#10 .description').val(localStorage.getItem('userInput'));
-$('#11 .description').val(localStorage.getItem('userInput'));
-$('#12 .description').val(localStorage.getItem('userInput'));
-$('#13 .description').val(localStorage.getItem('userInput'));
-$('#14 .description').val(localStorage.getItem('userInput'));
-$('#15 .description').val(localStorage.getItem('userInput'));
-$('#16 .description').val(localStorage.getItem('userInput'));
-$('#17 .description').val(localStorage.getItem('userInput'));
+// $('#9 .description').val(localStorage.getItem('userInput'));
+// $('#10 .description').val(localStorage.getItem('userInput'));
+// $('#11 .description').val(localStorage.getItem('userInput'));
+// $('#12 .description').val(localStorage.getItem('userInput'));
+// $('#13 .description').val(localStorage.getItem('userInput'));
+// $('#14 .description').val(localStorage.getItem('userInput'));
+// $('#15 .description').val(localStorage.getItem('userInput'));
+// $('#16 .description').val(localStorage.getItem('userInput'));
+// $('#17 .description').val(localStorage.getItem('userInput'));
 
 // storeInput()
 
