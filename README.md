@@ -1,7 +1,7 @@
 # Scheduler
 
 ## Image
-![Alt text](image.png)
+![Alt text](assets/images/image2.png)
 
 ## Description
 
